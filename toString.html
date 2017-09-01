@@ -12,15 +12,17 @@
     this.year = year;
     this.owner= owner;
     }
-  
-    robot.prototype.toString = function (){
+  /*所有物件皆繼承於Object,因此可以使用toString的方法取的物件之簡單字串.
+    覆寫toString的方法以便robot物件建立字串*/
+    robot.prototype.toString = function (){ 
       return this.name+" belongs to "+ this.owner+ "  and it was born in "+this.year+".";
     }
   
   
     var toy = new robot("Babu",2009,"David");
   
-    console.log(toy+"");
+    console.log(toy.toString()); /*直接呼叫toString方法*/
+    console.log(toy+""); /*無需直接叫用toString方法,也會被調用,使用＋的運算符來連接字串與物件*/
   </script>
 </head>
 <body>
