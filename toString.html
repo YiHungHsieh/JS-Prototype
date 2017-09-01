@@ -12,8 +12,12 @@
     this.year = year;
     this.owner= owner;
     }
- 
- 
+  
+    robot.prototype.toString = function (){
+      return this.name+" belongs to "+ this.owner+ "  and it was born in "+this.year+".";
+    }
+  
+  
     var toy = new robot("Babu",2009,"David");
   
     console.log(toy+"");
