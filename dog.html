@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dog prototype</title>
+</head>
+<script>
+    function Dog(name,breed,weight){
+        this.name = name;
+        this.breed = breed;
+        this.weight = weight;
+        
+    }
+  
+    Dog.prototype.species = "Canine"; //此處增加犬物件原型添加屬性和方法
+
+    Dog.prototype.bark = function(){
+        if(this.weight>25){
+            console.log(this.name+" says Woof");
+        }else{
+            console.log(this.name+" says Yip");
+        }
+    };
+
+    Dog.prototype.run = function(){
+        console.log("Run!!!!");
+    };
+
+    Dog.prototype.wag = function(){
+        console.log("Wag!!!!!");
+    };
+
+    function ShowDog(name,breed,weight,handler){
+        Dog.call(this,name,breed,weight);//相同屬性可以叫用Dog函式來寫
+        // this.name = name;
+        // this.breed = breed;
+        // this.weight = weight;
+        this.handler = handler;
+    }
+    ShowDog.prototype = new Dog();
+    ShowDog.prototype.constructor = ShowDog; //取得ShowDog原型,並明確把他的construtor屬性設定為ShowDog建構程序
+
+    ShowDog.prototype.league = "Webville";//所有展示犬物件皆屬webville物種
+    
+    ShowDog.prototype.stack = function(){ //物件需要的方法
+        console.log("Stack");
+    };
+    
+    ShowDog.prototype.bait = function(){ //物件需要的方法
+        console.log("Bait");
+    };
+
+    ShowDog.prototype.gait = function(kind){ //物件需要的方法
+        return kind + "ing";
+    }
+
+    ShowDog.prototype.groom = function(){ //物件需要的方法
+        console.log("Groom");
+    }
+
+    
+
+    var babu = new Dog("Babu","poodle",4);
+
+    babu.bark=function(){ //babu覆寫bark的方法,其它犬物件還是繼承Dog prototype裡的bark方法
+        console.log(this.name+"  hello!!!!!");
+    };
+    var bobo = new Dog("Bobo","mixed",27);
+    var scotty = new ShowDog("Scotty","Scottish Terrier","15","Cookie");
+
+    scotty.stack();
+    scotty.bark();
+    console.log(scotty.constructor);
+    console.log(scotty.species);
+    
+    console.log( "scotty is "+scotty.gait("walk"));
+    babu.bark();
+    bobo.bark();
+</script>
+<body>
+    
+</body>
+</html>
